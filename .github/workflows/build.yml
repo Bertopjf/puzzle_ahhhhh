@@ -15,8 +15,12 @@ jobs:
     
     - name: Download gradle-wrapper.jar
       run: |
-        mkdir -p gradle/wrapper
-        wget -O gradle/wrapper/gradle-wrapper.jar https://repo.gradle.org/gradle/gradle-8.1-wrapper/gradle-8.1-wrapper.jar
+        cd gradle/wrapper
+        wget -q https://services.gradle.org/distributions/gradle-8.1-wrapper.zip
+        unzip -q gradle-8.1-wrapper.zip 'gradle-8.1/lib/gradle-wrapper.jar'
+        mv gradle-8.1/lib/gradle-wrapper.jar .
+        rm -rf gradle-8.1 gradle-8.1-wrapper.zip
+        cd ../..
     
     - name: Set up JDK
       uses: actions/setup-java@v3
