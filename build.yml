@@ -1,0 +1,31 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    
+    - name: Build with Gradle
+      run: |
+        chmod +x gradlew
+        ./gradlew assembleRelease
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: apk
+        path: app/build/outputs/apk/release/
