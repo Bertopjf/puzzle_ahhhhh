@@ -13,6 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: Download gradle-wrapper.jar
+      run: |
+        mkdir -p gradle/wrapper
+        wget -O gradle/wrapper/gradle-wrapper.jar https://repo.gradle.org/gradle/gradle-8.1-wrapper/gradle-8.1-wrapper.jar
+    
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
