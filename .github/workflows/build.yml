@@ -15,6 +15,7 @@ jobs:
     
     - name: Download gradle-wrapper.jar
       run: |
+        mkdir -p gradle/wrapper
         cd gradle/wrapper
         wget -q https://services.gradle.org/distributions/gradle-8.1-wrapper.zip
         unzip -q gradle-8.1-wrapper.zip 'gradle-8.1/lib/gradle-wrapper.jar'
